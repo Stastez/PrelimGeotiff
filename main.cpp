@@ -4,16 +4,28 @@
 using namespace std;
 
 int main() {
-    GDALDataset* poDataset;
+    GDALDataset* dataset;
     GDALAllRegister();
-    const GDALAccess eAccess = GA_ReadOnly;
-    poDataset = GDALDataset::FromHandle(GDALOpen( "../data/byte.tif", eAccess ));
+    dataset = GDALDataset::FromHandle(GDALOpen("../data/byte.tif", GA_ReadOnly ));
 
-    poDataset->GetRasterBand(1);
+    double        adfGeoTransform[6];
+    printf( "Driver: %s/%s\n",
+            dataset->GetDriver()->GetDescription(),
+            dataset->GetDriver()->GetMetadataItem( GDAL_DMD_LONGNAME ) );
+    printf( "Size is %dx%dx%d\n",
+            dataset->GetRasterXSize(), dataset->GetRasterYSize(),
+            dataset->GetRasterCount() );
+    if( dataset->GetProjectionRef()  != NULL )
+        printf( "Projection is `%s'\n", dataset->GetProjectionRef() );
+    if( dataset->GetGeoTransform( adfGeoTransform ) == CE_None )
+    {
+        printf( "Origin = (%.6f,%.6f)\n",
+                adfGeoTransform[0], adfGeoTransform[3] );
+        printf( "Pixel Size = (%.6f,%.6f)\n",
+                adfGeoTransform[1], adfGeoTransform[5] );
+    }
 
-    cout << "hi";
-
-    delete poDataset;
+    delete dataset;
 
     return 0;
 }
