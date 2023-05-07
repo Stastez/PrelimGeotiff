@@ -8,7 +8,7 @@ int main() {
     GDALAllRegister();
     dataset = GDALDataset::FromHandle(GDALOpen("../data/byte.tif", GA_ReadOnly ));
 
-    double        adfGeoTransform[6];
+    double adfGeoTransform[6];
     printf( "Driver: %s/%s\n",
             dataset->GetDriver()->GetDescription(),
             dataset->GetDriver()->GetMetadataItem( GDAL_DMD_LONGNAME ) );
@@ -25,7 +25,7 @@ int main() {
                 adfGeoTransform[1], adfGeoTransform[5] );
     }
 
-    delete dataset;
+    GDALClose(dataset);
 
     return 0;
 }
