@@ -1,8 +1,19 @@
-#include <gdal_priv.h>
+#include "gdal_priv.h"
+#include <iostream>
+
+using namespace std;
 
 int main() {
-    GDALDataset* dataset = (GDALDataset*) GDALOpen("cmake-build-debug/data/byte.tif", GA_ReadOnly);
-    dataset.
+    GDALDataset* poDataset;
+    GDALAllRegister();
+    const GDALAccess eAccess = GA_ReadOnly;
+    poDataset = GDALDataset::FromHandle(GDALOpen( "../data/byte.tif", eAccess ));
+
+    poDataset->GetRasterBand(1);
+
+    cout << "hi";
+
+    delete poDataset;
 
     return 0;
 }
