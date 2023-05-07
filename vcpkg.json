@@ -1,9 +1,0 @@
-{
-  "name" : "prelimtest",
-  "version-string" : "1.0.0",
-  "builtin-baseline" : "388e9f1c82e077d4cea8f94991c6e31599f1239b",
-  "dependencies" : [ {
-    "name" : "libgeotiff",
-    "version>=" : "1.7.1#2"
-  } ]
-}
