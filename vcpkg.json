@@ -1,0 +1,10 @@
+{
+  "name" : "prelimtest",
+  "version-string" : "1.0.0",
+  "builtin-baseline" : "6a3dd0874f153f8b375ec26210ea6d41dee3bb26",
+  "dependencies" : [ {
+    "name" : "gdal",
+    "version>=" : "3.6.4",
+    "$comment" : "    find_package(GDAL CONFIG REQUIRED)\n\n    target_link_libraries(main PRIVATE GDAL::GDAL)\n"
+  } ]
+}
