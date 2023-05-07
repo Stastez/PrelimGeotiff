@@ -31,7 +31,7 @@ int main() {
     auto channelArray = new GDALRasterBand*[numChannels];
     for (int i = 0; i < numChannels; i++) {
         channelArray[i] = dataset->GetRasterBand(i+1);
-        //RasterIO call CAN reformat data (e.g. one dimensional array to two dimensional array) via parameters 7+, not used here
+        //RasterIO call CAN reformat data (e.g. one dimensional array to two dimensional array) via parameters 7+, as used here
         channelArray[i]->RasterIO(GF_Write, 0, 0, rasterSize, rasterSize, rasterArray[i], rasterSize, rasterSize, GDT_Byte, 0, 0, nullptr);
     }
 
